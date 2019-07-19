@@ -24,11 +24,11 @@ namespace TestWebApp.Controllers
             var config = new Saml2Configuration();
 
             config.Issuer = "http://some-domain.com/this-application";
-            config.SingleSignOnDestination = new Uri("https://adfs.mylogbuy.com/adfs/ls/");
+            config.SingleSignOnDestination = new Uri("https://test-adfs.itfoxtec.com/adfs/ls/");
             config.SigningCertificate = CertificateUtil.Load(HttpContext.Server.MapPath("~/App_Data/itfoxtec.identity.saml2.testwebapp_Certificate.pfx"), "!QAZ2wsx");
             config.SignatureAlgorithm = Saml2SecurityAlgorithms.RsaSha256Signature;
 
-            var appliesToAddress = "http://adfs.mylogbuy.com/adfs/services/trust";
+            var appliesToAddress = "https://test-adfs.itfoxtec.com/adfs/services/trust";
 
             var response = new Saml2AuthnResponse(config);
             response.Status = Saml2StatusCodes.Success;    
@@ -45,9 +45,6 @@ namespace TestWebApp.Controllers
         {
             yield return new Claim(ClaimTypes.NameIdentifier, "some-user-identity");
             yield return new Claim(ClaimTypes.Email, "some-user@domain.com");
-            yield return new Claim(ClaimTypes.GivenName, "some name");
-            yield return new Claim(ClaimTypes.Surname, "some surname");
-            yield return new Claim("http://schemas.LogBuy.com/ws/2012/09/identity/claims/customerid", "100944");
         }
     }
 }

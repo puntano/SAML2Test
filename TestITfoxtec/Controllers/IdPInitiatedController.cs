@@ -16,7 +16,7 @@ namespace TestITfoxtec.Controllers
     {
         public ActionResult Initiate()
         {
-            var serviceProviderRealm = "https://some-domain.com/some-service-provider";
+            var serviceProviderRealm = "https://claimstest.mylogbuy.com";
 
             var binding = new Saml2PostBinding();
             binding.RelayState = $"RPID={Uri.EscapeDataString(serviceProviderRealm)}";
@@ -32,7 +32,7 @@ namespace TestITfoxtec.Controllers
                 SignatureAlgorithm = Saml2SecurityAlgorithms.RsaSha256Signature
             };
 
-
+             
             var appliesToAddress = "http://adfs.mylogbuy.com/adfs/services/trust";
 
             var response = new Saml2AuthnResponse(config);

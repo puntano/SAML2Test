@@ -43,13 +43,13 @@ namespace TestITfoxtec.Identity
 
         private Claim GetClaim(ClaimsPrincipal principal, string claimType)
         {
-            return ((ClaimsIdentity)principal.Identity).Claims.Where(c => c.Type == claimType).FirstOrDefault();
+            return ((ClaimsIdentity)principal.Identity).Claims.FirstOrDefault(c => c.Type == claimType);
         }
 
         private string GetClaimValue(ClaimsPrincipal principal, string claimType)
         {
             var claim = GetClaim(principal, claimType);
-            return claim != null ? claim.Value : null;
+            return claim?.Value;
         }
     }
 }
